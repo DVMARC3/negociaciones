@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Negociaciones</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <!-- Librería SheetJS para leer/escribir Excel -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Gestor de Negociaciones</h1>
+        <div class="actions">
+            <label for="fileUpload" class="btn">Cargar Excel</label>
+            <input type="file" id="fileUpload" accept=".xlsx, .xls" style="display: none;">
+            <button id="exportBtn" class="btn btn-success" disabled>Guardar y Exportar Excel</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="table-container">
+            <table id="dataTable">
+                <thead>
+                    <tr id="tableHeader">
+                        <!-- Las cabeceras se generarán aquí con JS -->
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr><td colspan="16" class="empty-state">Sube un archivo Excel para empezar...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+        // Registro del Service Worker para la PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(reg => console.log('Service Worker registrado', reg))
+                .catch(err => console.error('Error al registrar Service Worker', err));
+        }
+    </script>
+</body>
+</html>
